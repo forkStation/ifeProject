@@ -204,13 +204,6 @@ demo根目录新建文件webpack.config.js
     webpack --progress --colors 颜色以及进度条
     webpack --progress --colors --watch开启watch模式，每次修改文件都会自动编译
 
-## webpack服务器
-
-    npm install webpack-dev-server -g
-    webpack-dev-server --progress --colors
-
-这将会启动一个小型的express服务器，在localhost:8080端口；
-
 ## 插件
 
 插件可以完成更多 loader 不能完成的功能。
