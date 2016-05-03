@@ -24,8 +24,7 @@
 
         var aqiDisplay = getId("aqi-display");
         button.onclick = function(){
-            var aqiInput = getId("aqi-input").value;
-            aqiDisplay.innerHTML=aqiInput;
+            aqiDisplay.innerHTML = getId("aqi-input").value;
         }
         function getId(elmId){
             return document.getElementById(elmId);
