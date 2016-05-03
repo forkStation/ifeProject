@@ -1,0 +1,79 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.rowContent {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px #999 solid;
+    padding:0 10px;
+}
+.rowContent:before,.rowContent:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.rowContent div {
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+}
+
+p {
+    height: 50px;
+    background: #eee;
+    border: 1px #ccc solid;
+}
+
+@media screen and (min-width: 769px) {
+    .rowContent .span1, .rowContent .span2, .rowContent .span3 {
+        padding: 0 10px;
+        width: 33.3333%;
+    }
+
+    .rowContent .span4, .rowContent .span6 {
+        padding: 0 10px;
+        width: 25%;
+    }
+
+    .rowContent .span5, .rowContent .span11 {
+        padding: 0 10px;
+        width: 50%;
+    }
+
+    .rowContent .span7, .rowContent .span8 {
+        padding: 0 10px;
+        width: 8.333333%;
+    }
+
+    .rowContent .span9, .rowContent .span10 {
+        padding: 0 10px;
+        width: 16.666667%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .rowContent .span1, .rowContent .span2, .rowContent .span5 {
+        width: 50%;
+    }
+
+    .rowContent .span4, .rowContent .span6, .rowContent .span10, .rowContent .span11 {
+        width: 25%;
+    }
+
+    .rowContent .span7, .rowContent .span8 {
+        width: 16.666667%;
+    }
+
+    .rowContent .span3 {
+        width: 100%;
+    }
+
+    .rowContent .span9 {
+        width: 66.666667%;
+    }
+}
