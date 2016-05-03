@@ -34,13 +34,13 @@
         var oul = document.querySelector('#aqi-list');
 
         aqiData = aqiData.filter(function (ele) {
-            return ele[1] > 60
+            return ele[1] > 60;
         });
         aqiData = aqiData.sort(function (a, b) {
-            return a[1] < b[1]
+            return a[1] < b[1];
         });
         aqiData = aqiData.forEach(function (ele, i) {
-            tpl(ele, i)
+            tpl(ele, i);
         });
 
         function tpl(ele, i) {
