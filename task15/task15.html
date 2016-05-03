@@ -77,7 +77,7 @@
         var resort = document.getElementById("resort");
         for(var i=0;i<data.length;i++){
             var liElm = document.createElement("li");
-            liElm.innerHTML = data[i][0]+"：<b>"+data[i][1]+"</b>";
+            liElm.innerHTML = "第"+i+"名："+data[i][0]+"：<b>"+data[i][1]+"</b>";
             resort.appendChild(liElm);
         }
     }
