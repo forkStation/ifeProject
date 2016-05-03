@@ -37,7 +37,7 @@
             return ele[1] > 60
         });
         aqiData = aqiData.sort(function (a, b) {
-            return a[1] > b[1]
+            return a[1] < b[1]
         });
         aqiData = aqiData.forEach(function (ele, i) {
             tpl(ele, i)
