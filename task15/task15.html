@@ -46,13 +46,11 @@
          ……
          ]
          */
-        var source = document.getElementById("source");
-        var liList = source.getElementsByTagName("li");
+        var liList = document.querySelectorAll("#source li");
         var data = new Array();
         for(var i=0;i<liList.length;i++){
             data[i] = liList[i].innerText.split("：");
         }
-            //data.push(liList[i].innerHTML,bElm[i].innerText);
         return data;
     }
 
@@ -62,10 +60,9 @@
      * 返回一个排序后的数组
      */
     function sortAqiData(data) {
-        data.sort(function(x,y){
-            return (x[1]==y[1])?(x[1]-y[1]):(x[1]-y[1]);
+        return data.sort(function(x,y){
+            return x[1]>y[1];
         });
-        return data;
     }
 
     /**
@@ -74,10 +71,10 @@
      * 格式见ul中的注释的部分
      */
     function render(data) {
-        var resort = document.getElementById("resort");
-        for(var i=0;i<data.length;i++){
+        var resort = document.querySelector("#resort");
+        for(var ele in data){
             var liElm = document.createElement("li");
-            liElm.innerHTML = "第"+i+"名："+data[i][0]+"：<b>"+data[i][1]+"</b>";
+            liElm.innerHTML = "第"+(parseInt(ele)+1)+"名："+data[ele][0]+"：<b>"+data[ele][1]+"</b>";
             resort.appendChild(liElm);
         }
     }
@@ -90,7 +87,7 @@
 
 
     function init() {
-        var sortBtn = document.getElementById("sort-btn");
+        var sortBtn = document.querySelector("#sort-btn");
         sortBtn.onclick = btnHandle;
         // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
     }
