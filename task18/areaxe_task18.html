@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        *{padding:0px;margin:0px;border-radius: 4px;}
+        body{text-align: center;}
+        #inputNum{
+            padding:0 1em;
+            margin: 30px;
+            height:30px;
+        }
+        #list{
+            height:60px;
+            background: #f0f0f0;
+            border:solid 1px #eee;
+            width:90%;
+            margin:100px auto;
+            list-style: none;
+        }
+        #list li{
+            float: left;
+            font-weight: 600;
+            padding: 0 1.5em;
+            line-height: 60px;
+            margin-right: 10px;
+            background: #003366;
+            color:#fff;
+        }
+        button{
+            background: #0099FF;
+            padding: 0.8em 1.6em;
+            border:none;
+            color:#fff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<ul id="list">
+
+</ul>
+<div style="margin-top: 200px"><input id="inputNum" placeholder="请输入一个数字"></div>
+<div>
+    <button onclick="listHandle('left','in')">左侧入</button>
+    <button onclick="listHandle('left','out')">左侧出</button>
+    <button onclick="listHandle('right','in')">右侧入</button>
+    <button onclick="listHandle('right','out')">右侧出</button>
+</div>
+    <script>
+        function listHandle(direction,operation){
+
+            var list = document.querySelector("#list");
+            switch(operation){
+                case "in":
+                        var liNode = document.createElement("li");
+                        liNode.setAttribute("onclick","delSelf(this)");
+                        var inputNum = document.querySelector("#inputNum").value;
+                        if(!checkValue(inputNum))
+                            return false;
+                    liNode.innerText = inputNum;
+                    switch(direction){
+                        case "left":
+                            list.insertBefore(liNode,list.childNodes[0]);
+                            break;
+                        case "right":
+                            list.appendChild(liNode);
+                            break;
+                    }
+                    break;
+                case "out":
+                    if(!listCheck())
+                        return false;
+                    var childNode;
+                    switch(direction){
+                        case "left":
+                                childNode =  list.firstChild;
+                                alert(childNode.innerText);
+                            list.removeChild(childNode);
+                            break;
+                        case "right":
+                            childNode =  list.lastChild;
+                            alert(childNode.innerText);
+                            list.removeChild(childNode);
+                            break;
+                    }
+                    break;
+            }
+        }
+        function listCheck(){
+            var list = document.querySelectorAll("#list li");
+            if(list.length==0){
+                alert("暂无数据");
+                return false;
+            }
+            return true;
+        }
+        function checkValue(inputData){
+            var inputData = inputData.trim();
+            var pattern = /^-?[1-9]\d*$/;
+            if(inputData=='')
+                alert("输入为空");
+            else if(pattern.test(inputData)){
+
+                return true;
+            }
+
+            else{
+                alert("请输入数字");
+                return false;
+            }
+        }
+        function delSelf(id){
+            document.querySelector("#list").removeChild(id);
+        }
+    </script>
+</body>
+</html>
