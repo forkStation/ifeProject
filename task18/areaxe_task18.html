@@ -53,6 +53,11 @@
         function listHandle(direction,operation){
 
             var list = document.querySelector("#list");
+            var childNode;
+            switch (direction){
+                case "left": childNode = list.firstChild;break;
+                case "right":childNode = list.lastChild;break;
+            }
             switch(operation){
                 case "in":
                         var liNode = document.createElement("li");
@@ -73,26 +78,16 @@
                 case "out":
                     if(!listCheck())
                         return false;
-                    var childNode;
-                    switch(direction){
-                        case "left":
-                                childNode =  list.firstChild;
-                                alert(childNode.innerText);
-                            list.removeChild(childNode);
-                            break;
-                        case "right":
-                            childNode =  list.lastChild;
-                            alert(childNode.innerText);
-                            list.removeChild(childNode);
-                            break;
-                    }
-                    break;
+                    alert(childNode.innerText);
+                    list.removeChild(childNode);
+                        break;
             }
         }
+
         function listCheck(){
             var list = document.querySelectorAll("#list li");
             if(list.length==0){
-                alert("暂无数据");
+                alert("数据列表为空");
                 return false;
             }
             return true;
@@ -100,13 +95,14 @@
         function checkValue(inputData){
             var inputData = inputData.trim();
             var pattern = /^-?[1-9]\d*$/;
-            if(inputData=='')
+            if(inputData==''){
                 alert("输入为空");
-            else if(pattern.test(inputData)){
-
-                return true;
+                return false;
             }
 
+            else if(pattern.test(inputData)){
+                return true;
+            }
             else{
                 alert("请输入数字");
                 return false;
@@ -115,6 +111,7 @@
         function delSelf(id){
             document.querySelector("#list").removeChild(id);
         }
+
     </script>
 </body>
 </html>
