@@ -5,3 +5,14 @@
 - 点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
 - 点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
 - 点击队列中任何一个元素，则该元素会被从队列中删除
+
+
+webpack执行方式：
+
+    cd task18
+    npm install webpack -g
+    npm install
+    npm run server
+
+    open broswer: localhoest:8080
+    for enjoy it！
