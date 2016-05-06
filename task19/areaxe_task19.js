@@ -18,11 +18,11 @@ function listHandle(direction,operation){
             switch(direction){
                 case "left":
                     list.insertBefore(liNode,list.childNodes[0]);
-                    initStyle();
+                    setNodeStyle();
                     break;
                 case "right":
                     list.appendChild(liNode);
-                    initStyle();
+                    setNodeStyle();
                     break;
             }
             break;
@@ -30,7 +30,7 @@ function listHandle(direction,operation){
             if(!listCheck())
                 return false;
             list.removeChild(childNode);
-            initStyle();
+            setNodeStyle();
             break;
     }
 }
@@ -42,7 +42,7 @@ function listCheck(){
     }
     return true;
 }
-function checkValue(inputData){
+function checkValue(inputData){//判断输入是否合法
     var inputData = inputData.trim();
     var pattern = /^-?[1-9]\d*$/;
     if(inputData==''){
@@ -50,7 +50,7 @@ function checkValue(inputData){
         return false;
     }
 
-    else if(pattern.test(inputData)){
+    else if(pattern.test(inputData)){//正则表达式匹配
         if(inputData>=10&&inputData<=100)
         return true;
         else{
@@ -63,23 +63,25 @@ function checkValue(inputData){
         return false;
     }
 }
-function delSelf(id){
+
+function delSelf(id){   //删除元素本身
     document.querySelector("#list").removeChild(id);
 }
 
-function initList(){
+function initList(){ //点击随机生成按钮触发
     list.innerHTML = "";
     var num = 30;
     for(var i=0;i<num;i++){
         var liNode = getChildNode();
-        list.appendChild(liNode);
+        list.appendChild(liNode);   //循环调用创建节点方法创建新的柱形节点
     }
-    initStyle();
+    setNodeStyle();    //设置柱形图节点样式
 }
-function initStyle(){
+
+function setNodeStyle(){
     var listChilds = list.querySelectorAll("li");
     var size = listChilds.length;
-    if(size>=60){
+    if(size>=60){   //判断柱形节点是否达到上限，如果达到，则不渲染
         alert("数据上限为60");
         return false;
     }
@@ -106,7 +108,7 @@ function beginBubble(){
         var size = childList.length;
         if(i<size){
             if(j<size-i-1){
-                exchangeHeight(childList[j],childList[j+1]);
+                exchange(childList[j],childList[j+1]);
                 j++;
                 return;
             }
@@ -116,13 +118,12 @@ function beginBubble(){
             }
         }
        else{
-            console.log(i);
             clearInterval(clear);
         }
     }
 }
 
-function exchangeHeight(ele1,ele2){
+function exchange(ele1,ele2){
         var temp;
         if(ele1.offsetHeight>ele2.offsetHeight){
             temp = ele1.offsetHeight;
