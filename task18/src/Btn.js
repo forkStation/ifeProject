@@ -1,6 +1,4 @@
 /**
- * Created by wj on 2016/5/5.
-
  _
  _ooOoo_
  o8888888o
@@ -22,17 +20,19 @@
  `=--=-'                    wj
  佛祖保佑                永无bug
  */
-import Queue from "./src/queue";
-import Button from "./src/Btn";
+import Uiblock from "./Uiblock";
+import QueueElement from "./QueueElement";
+export default class Button extends Uiblock {
+    constructor(DomObject) {
+        super(DomObject);
+    }
 
-require("./css/app.css");
+    _ClickOper() {
+        let text = document.querySelector("#inputNum").value;
+        let queueElement = new QueueElement(text, this._queue);
+        this._queue[this._operator](queueElement);
+        this._queue.render();
 
-let queue = new Queue();
-let btn1 = new Button(".btn:nth-child(1)");
-btn1.ClickInit(queue, "unshift");
-let btn2 = new Button(".btn:nth-child(2)");
-btn2.ClickInit(queue, "shift");
-let btn3 = new Button(".btn:nth-child(3)");
-btn3.ClickInit(queue, "push");
-let btn4 = new Button(".btn:nth-child(4)");
-btn4.ClickInit(queue, "pop"); 
+        console.log(this._queue);
+    }
+}
