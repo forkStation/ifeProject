@@ -23,7 +23,7 @@
  佛祖保佑                永无bug
  */
 import Queue from "./src/queue";
-import Button from "./src/button";
+import Button from "./src/Button";
 
 require("./css/app.css");
 
