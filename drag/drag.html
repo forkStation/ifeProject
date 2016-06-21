@@ -26,17 +26,17 @@
         var Y;
             dragEml.onmousedown = function(event){
                  flag = true;
-            	var e = event||window.event;
-            	X = e.offsetX;
-            	Y = e.offsetY;
+            	 var e = event||window.event;
+            	 X = e.offsetX;
+            	 Y = e.offsetY;
             };
             dragEml.onmouseup = function(){
                 flag = false;
             };
             dragEml.onmousemove = function(event){
                 if(flag){
-                	dragEml.style.left = event.clientX -X+'px';
-                	dragEml.style.top = event.clientY-Y+'px';
+                   dragEml.style.left = event.clientX -X+'px';
+                   dragEml.style.top = event.clientY-Y+'px';
             	}
             };
     }
