@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .drag{
+            width:200px;
+            height:200px;
+            background:#f0f0f0;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class = "drag"></div>
+</body>
+<script>
+    window.onload = function(){
+        var flag = false;
+        console.log(navigator.platform);
+        var dragEml = document.querySelector(".drag");
+        var X ;
+        var Y;
+        if(true){
+            dragEml.onmousedown = function(event){
+                start(event);
+            };
+            dragEml.onmouseup = function(){
+                end();
+            };
+            dragEml.onmousemove = function(event){
+                move(event);
+            };
+        }else{
+            dragEml.onmousedown = function(event){
+                start(event);
+            };
+            dragEml.onmouseup = function(){
+                end();
+            };
+            dragEml.onmousemove = function(event){
+                move(event);
+            };
+        }
+
+        function start(event){
+            console.log(event);
+            flag = true;
+            var e = event||window.event;
+            X = e.offsetX;
+            Y = e.offsetY;
+        }
+        function end(){
+            flag = false;
+        }
+        function move(event){
+            if(flag){
+                dragEml.style.left = event.clientX -X+'px';
+                dragEml.style.top = event.clientY-Y+'px';
+            }
+        }
+    }
+</script>
+</html>
