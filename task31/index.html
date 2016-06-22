@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .tab-con{
+            margin: 2em auto;;
+        }
+        .tab-con input,select{
+            padding-right: 2em;
+            margin: 0 1em;
+            background: #fff;
+            height: 2em;;
+            border-radius: 4px;
+            border:solid 1px #999;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <input type="radio" name="position" value="0" class="position" checked />在校生
+    <input type="radio" name="position" value="1" class="position" />非在校生
+</div>
+<div>
+    <div class="tab-con">
+        <label>学校</label>
+        <select id="city" onchange="getData(this.value)">
+            <option value="beijing">北京</option>
+            <option value="shanghai">上海</option>
+            <option value="zhejiang">浙江</option>
+        </select>
+        <select id="school"></select>
+    </div>
+    <div class="tab-con" style="display: none">
+        <label>就业单位</label>
+        <input type="text" >
+    </div>
+</div>
+<script>
+    window.onload = function(){
+        var city = document.querySelector("#city");
+        getData(city.value);
+//        city.onchange = getData(city.value);
+    };
+    //切换效果
+    var tabCon = document.querySelectorAll(".tab-con");
+    var radioBox = document.querySelectorAll(".position");
+    Array.prototype.forEach.call(radioBox,function(elm){
+        elm.onclick = function(){
+            for(var i=0;i< tabCon.length;i++){
+                tabCon[i].style.display = "none";
+            }
+            tabCon[parseInt(this.value)].style.display = "block";
+        }
+    });
+    function getData(cityName){
+        var xhr = createXMLHttpRequest();
+        xhr.open("post","data.json",true);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    var jsonData= JSON.parse(xhr.responseText);
+                    var school = jsonData[cityName].school;
+                    var schoolList = document.querySelector("#school");
+                    schoolList.innerHTML = '';
+                    for(var i in school){
+                        var opElm = document.createElement("option");
+                        opElm.innerText = school[i];
+                        schoolList.appendChild(opElm);
+                    }
+                }
+            }
+        };
+        xhr.send(null);
+    }
+    function createXMLHttpRequest(){
+        var xhr;
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }else{
+            xhr = new ActiveXObject('Microsoft.XMLHttp');
+        }
+        return xhr;
+    }
+
+</script>
+</body>
+</html>
